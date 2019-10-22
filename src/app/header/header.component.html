@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <h1>Quejatec</h1>
+    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="userIsAuthenticated"> -->
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>face</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+</mat-toolbar>
+
+
+

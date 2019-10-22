@@ -1,0 +1,39 @@
+li {
+  display: inline;
+  margin: 2rem;
+}
+
+h1 {
+  font-size: 150%;
+}
+
+mat-toolbar {
+  height: 6rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-icon-button {
+  position: absolute;
+  right: 10px;
+
+}
+
+.username {
+  position: absolute;
+  right: 75px;
+  top: -3px;
+  text-size-adjust: 30%;
+}
+
+/* .minimenu {
+  display: inline-block;
+
+} */

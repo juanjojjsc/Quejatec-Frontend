@@ -1,0 +1,24 @@
+.box {
+  width: 100px;
+  height: 100px;
+  display: none;
+  display: inline-block;
+  margin: 1rem;
+}
+
+.container {
+
+  margin-top: 3rem;
+  text-align: center;
+
+}
+
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+p {
+  text-align: center;
+}
