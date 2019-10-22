@@ -1,9 +1,10 @@
 
 <div class="container">
-    <div class="box" style="background-color:red;"></div>
-    <span></span>
-    <div class="box" style="background-color:yellow;"></div>
-    <div class="box" style="background-color:green;"></div>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle style="background-color:red;" value="bad">Malo</mat-button-toggle>
+        <mat-button-toggle style="background-color:yellow;" value="ok">Regular</mat-button-toggle>
+        <mat-button-toggle style="background-color:green;" value="good">Bueno</mat-button-toggle>
+    </mat-button-toggle-group>
 </div>
 
 <button mat-raised-button color="primary">Enviar</button>

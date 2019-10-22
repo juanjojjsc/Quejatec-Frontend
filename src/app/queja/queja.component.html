@@ -1,0 +1,60 @@
+<mat-card>
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+    <h2>Nueva Queja</h2>
+    <form #postForm="ngForm" *ngIf="!isLoading" autocomplete="off">
+        <mat-form-field>
+            <input
+              matInput
+              name="title"
+              ngModel
+              required
+              minlength="2"
+              placeholder="Titulo de la Queja"
+              #title="ngModel">
+            <mat-error *ngIf="title.invalid">Ingrese un titulo</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea
+                matInput
+                rows="2"
+                name="descripcion"
+                ngModel
+                required
+                placeholder="Descripcion"
+                #descripcion="ngModel">
+              </textarea>
+              <mat-error *ngIf="descripcion.invalid">Ingrese una descripcion.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea
+                matInput
+                rows="2"
+                name="lugar"
+                ngModel
+                required
+                placeholder="Lugar"
+                #lugar="ngModel">
+              </textarea>
+              <mat-error *ngIf="lugar.invalid">Ingrese el lugar</mat-error>
+            </mat-form-field>
+          <mat-form-field>
+            <textarea
+              matInput
+              rows="2"
+              name="hora"
+              ngModel
+              required
+              placeholder="Hora"
+              #hora="ngModel">
+            </textarea>
+            <mat-error *ngIf="hora.invalid">Ingrese la hora</mat-error>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color = "primary"
+
+            type="submit">Enviar Queja
+          </button>
+    </form>
+  </mat-card>
