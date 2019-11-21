@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { QuejaComponent } from './queja/queja.component';
@@ -25,6 +25,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { UserinfoComponent } from './userinfo/userinfo.component';
+import { MisquejasComponent } from './misquejas/misquejas.component';
+import { VerquejaComponent } from './verqueja/verqueja.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -38,7 +43,9 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
     HomeComponent,
     QuejaComponent,
     NuevaquejaComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    MisquejasComponent,
+    VerquejaComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,11 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
     MatFormFieldModule,
     MatSnackBarModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

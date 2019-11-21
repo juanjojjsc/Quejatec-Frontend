@@ -1,8 +1,12 @@
 <div>
-<button mat-button [matMenuTriggerFor]="menu">Espacio</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
-  </mat-menu>
+  <p>Ubicacion</p>
+  <mat-select [formControl]="pokemonControl">
+    <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
+                  [disabled]="group.disabled">
+      <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+        {{pokemon.viewValue}}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
 </div>
 
