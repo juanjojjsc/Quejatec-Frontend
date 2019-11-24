@@ -2,59 +2,40 @@
     <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
     <h2>Nueva Queja</h2>
     <form #postForm="ngForm" autocomplete="off">
-        <mat-form-field>
-            <input
-              matInput
-              name="title"
-              ngModel
-              required
-              minlength="2"
-              placeholder="Titulo de la Queja"
-              #title="ngModel">
-            <mat-error *ngIf="title.invalid">Ingrese un titulo</mat-error>
+        <!-- <div class="menu"> -->
+            <p>Ubicacion</p>
+          <mat-form-field>
+            <mat-select [formControl]="pokemonControl">
+              <mat-optgroup *ngFor="let place of places" [label]="place.name"
+                            [disabled]="place.disabled">
+                <mat-option *ngFor="let placeEvent of place.placeEvents" [value]="placeEvent._id">
+                  {{placeEvent.name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
           </mat-form-field>
+
           <mat-form-field>
               <textarea
+                [formControl]="descControl"
                 matInput
                 rows="2"
-                name="descripcion"
-                ngModel
+                name="description"
+
                 required
                 placeholder="Descripcion"
-                #descripcion="ngModel">
+
+                >
               </textarea>
-              <mat-error *ngIf="descripcion.invalid">Ingrese una descripcion.</mat-error>
           </mat-form-field>
-          <mat-form-field>
-              <textarea
-                matInput
-                rows="2"
-                name="lugar"
-                ngModel
-                required
-                placeholder="Lugar"
-                #lugar="ngModel">
-              </textarea>
-              <mat-error *ngIf="lugar.invalid">Ingrese el lugar</mat-error>
-            </mat-form-field>
-          <mat-form-field>
-            <textarea
-              matInput
-              rows="2"
-              name="hora"
-              ngModel
-              required
-              placeholder="Hora"
-              #hora="ngModel">
-            </textarea>
-            <mat-error *ngIf="hora.invalid">Ingrese la hora</mat-error>
-          </mat-form-field>
+
+
 
           <button
             mat-raised-button
             color = "primary"
 
-            type="submit">Enviar Queja
+            type="submit" (click)="postQueja()">Enviar Queja
           </button>
     </form>
   </mat-card>

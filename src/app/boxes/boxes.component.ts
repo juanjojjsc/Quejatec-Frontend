@@ -72,11 +72,7 @@ export class BoxesComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.pokemonControl.valueChanges.subscribe();
-
     this.placeService.getPlaces();
-
-    // console.log(this.placeService.getPlaces());
 
     this.placesSub = this.placeService.getPlaceUpdateListener()
     .subscribe((places: Place[]) => {

@@ -107,6 +107,19 @@ export class QuejasService {
       });
   }
 
+  postQueja( _id:null, description: string, placeEvent: string, status: null, userRate: null, registerDate: null) {
+    const newQueja: Queja = { _id, description, placeEvent, status, userRate, registerDate };
+    this.http
+      .post<{ message: string, quejaId: string }>("http://10.0.1.70:3000/client/issue", newQueja)
+      .subscribe(responseData => {
+        // const id = responseData.taskId;
+        // task.id = id;
+        // this.tasks.push(task);
+        // this.tasksUpdated.next([...this.tasks]);
+        this.router.navigate(["/"]);
+      });
+  }
+
   // deleteTask(taskId: string) {
   //   this.http.delete("http://localhost:3000/api/tasks/" + taskId)
   //     .subscribe(() => {
