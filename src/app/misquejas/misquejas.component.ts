@@ -23,9 +23,9 @@ export class MisquejasComponent implements OnInit {
 
     console.log("In");
 
-    this.quejasSerivice.getQuejas(this.creatorId);
+    this.quejasSerivice.getQuejas();
 
-    console.log(this.quejasSerivice.getQuejas(this.creatorId));
+    // console.log(this.quejasSerivice.getQuejas());
 
     this.quejasSub = this.quejasSerivice.getQuejaUpdateListener()
     .subscribe((quejas: Queja[]) => {

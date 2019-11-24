@@ -1,13 +1,13 @@
 
 <div class="container">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle style="background-color:red;" value="bad">Malo</mat-button-toggle>
-        <mat-button-toggle style="background-color:yellow;" value="ok">Regular</mat-button-toggle>
-        <mat-button-toggle style="background-color:green;" value="good">Bueno</mat-button-toggle>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="scoreControl">
+        <mat-button-toggle value="0">Malo</mat-button-toggle>
+        <mat-button-toggle value="5">Regular</mat-button-toggle>
+        <mat-button-toggle value="10">Bueno</mat-button-toggle>
     </mat-button-toggle-group>
 </div>
 
-<button mat-raised-button color="primary">Enviar</button>
+<button mat-raised-button color="primary" [disabled]="!scoreControl.valid" (click)="postScore()">Enviar</button>
 
 <p>Indica tu Experiencia</p>
 <p>o</p>

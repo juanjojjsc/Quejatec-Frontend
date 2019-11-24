@@ -1,12 +1,14 @@
 <div>
   <p>Ubicacion</p>
+  <mat-form-field>
   <mat-select [formControl]="pokemonControl">
-    <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
-                  [disabled]="group.disabled">
-      <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-        {{pokemon.viewValue}}
+    <mat-optgroup *ngFor="let place of places" [label]="place.name"
+                  [disabled]="place.disabled">
+      <mat-option *ngFor="let placeEvent of place.placeEvents" [value]="placeEvent.id">
+        {{placeEvent.name}}
       </mat-option>
     </mat-optgroup>
   </mat-select>
+</mat-form-field>
 </div>
 

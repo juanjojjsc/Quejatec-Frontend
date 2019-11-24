@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Queja } from './queja.model';
 import { Router } from '@angular/router';
+import { Score } from './score.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({ providedIn: 'root' })
 export class QuejasService {
@@ -13,12 +15,12 @@ export class QuejasService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getQuejas(creatorId: string) {
-    creatorId = '5dcc86e89f0d08180f413288';
-    console.log('http://10.0.1.70:3000/client/issue/all/' + creatorId);
+  getQuejas() {
+    //creatorId = '5dcc86e89f0d08180f413288';
+    console.log('http://10.0.1.70:3000/client/issue/');
     this.http
       .get<{ issues: any[]; }>(
-        'http://10.0.1.70:3000/client/issue/all/' + creatorId
+        'http://10.0.1.70:3000/client/issue/'
       )
       .pipe(map((quejaData) => {
         console.log(quejaData);
@@ -53,19 +55,18 @@ export class QuejasService {
     return this.quejasUpdated.asObservable();
   }
 
-  // addTask(project: string, title: string, introduction: string, instructions: string, times: string, location: string, date: string) {
-  //   const task: Task = { id: null, project: project, title: title, introduction: introduction,
-  //     instructions: instructions, times: times, location: location, date: date };
-  //   this.http
-  //     .post<{ message: string, taskId: string }>("http://localhost:3000/api/tasks", task)
-  //     .subscribe(responseData => {
-  //       const id = responseData.taskId;
-  //       task.id = id;
-  //       this.tasks.push(task);
-  //       this.tasksUpdated.next([...this.tasks]);
-  //       this.router.navigate(["/"]);
-  //     });
-  // }
+  postScore(score: number, placeEvent: string) {
+    const newScore: Score = { id:null, score: score, placeEvent: placeEvent };
+    this.http
+      .post<{ message: string, quejaId: string }>("http://10.0.1.70:3000/client/score", newScore)
+      .subscribe(responseData => {
+        // const id = responseData.taskId;
+        // task.id = id;
+        // this.tasks.push(task);
+        // this.tasksUpdated.next([...this.tasks]);
+        this.router.navigate(["/"]);
+      });
+  }
 
   // deleteTask(taskId: string) {
   //   this.http.delete("http://localhost:3000/api/tasks/" + taskId)

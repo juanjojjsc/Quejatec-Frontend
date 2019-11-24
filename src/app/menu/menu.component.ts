@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { PlaceService } from '../place.service';
+import { Subscription } from 'rxjs';
+import { Place } from '../place.model';
 
 export interface Pokemon {
   value: string;
@@ -22,9 +25,9 @@ export class MenuComponent implements OnInit {
 
 
 
+  private placesSub: Subscription;
 
-
-  lugares: any[] = [];
+  places: any[] = [];
   pokemonControl = new FormControl();
 
   pokemonGroups: PokemonGroup[] = [
@@ -63,11 +66,22 @@ export class MenuComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(public placeService: PlaceService) { }
 
   ngOnInit() {
 
     this.pokemonControl.valueChanges.subscribe();
+
+    this.placeService.getPlaces();
+
+    // console.log(this.placeService.getPlaces());
+
+    this.placesSub = this.placeService.getPlaceUpdateListener()
+    .subscribe((places: Place[]) => {
+      console.log("FETCHED");
+      this.places = places;
+      console.log("Frontend Places: ",this.places);
+    });
 
 
 
