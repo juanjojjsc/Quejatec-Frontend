@@ -31,6 +31,7 @@ export class MisquejasComponent implements OnInit {
     .subscribe((quejas: Queja[]) => {
       console.log("FETCHED");
       this.quejas = quejas;
+      
     });
     // this.userIsAuthenticated = this.authService.getIsAuth();
     // this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
