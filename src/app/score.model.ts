@@ -1,5 +1,5 @@
 export interface Score {
-  id: string;
+  _id: string;
   score: number;
   placeEvent: string;
 }
