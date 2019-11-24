@@ -55,8 +55,8 @@ export class QuejasService {
     return this.quejasUpdated.asObservable();
   }
 
-  postScore(score: number, placeEvent: string) {
-    const newScore: Score = { id:null, score: score, placeEvent: placeEvent };
+  postScore( id:null, score: number, placeEvent: string) {
+    const newScore: Score = { id:id, score: score, placeEvent: placeEvent };
     this.http
       .post<{ message: string, quejaId: string }>("http://10.0.1.70:3000/client/score", newScore)
       .subscribe(responseData => {

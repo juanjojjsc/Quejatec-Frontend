@@ -1,4 +1,16 @@
-
+<div class="menu">
+  <p>Ubicacion</p>
+  <mat-form-field>
+  <mat-select [formControl]="pokemonControl">
+    <mat-optgroup *ngFor="let place of places" [label]="place.name"
+                  [disabled]="place.disabled">
+      <mat-option *ngFor="let placeEvent of place.placeEvents" [value]="placeEvent.id">
+        {{placeEvent.name}}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
+</div>
 <div class="container">
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="scoreControl">
         <mat-button-toggle value="0">Malo</mat-button-toggle>
@@ -7,7 +19,7 @@
     </mat-button-toggle-group>
 </div>
 
-<button mat-raised-button color="primary" [disabled]="!scoreControl.valid" (click)="postScore()">Enviar</button>
+<button class="miboton" mat-raised-button color="primary" [disabled]="!scoreControl.valid" (click)="postScore()">Enviar</button>
 
 <p>Indica tu Experiencia</p>
 <p>o</p>

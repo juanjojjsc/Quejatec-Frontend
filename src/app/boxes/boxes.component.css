@@ -19,7 +19,8 @@ mat-button-toggle {
 }
 
 
-button {
+.miboton {
+  margin-left: 100px;
   display: block;
   margin: 0 auto;
 }
@@ -27,3 +28,19 @@ button {
 p {
   text-align: center;
 }
+
+button {
+
+  font-size: 100%;
+  margin:auto 0;
+  text-align: center;
+}
+
+.menu {
+  margin-top: 1rem;
+  margin-left: 100px;
+}
+
+
+
+
