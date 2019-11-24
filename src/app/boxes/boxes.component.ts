@@ -25,15 +25,15 @@ export class BoxesComponent implements OnInit {
     let score = this.scoreControl.value;
 
 
-    this.quejasSerivice.postScore("");
+    this.quejasSerivice.postScore(0,"");
 
     // console.log(this.quejasSerivice.getQuejas());
 
-    this.quejasSub = this.quejasSerivice.getQuejaUpdateListener()
-    .subscribe((quejas: Queja[]) => {
-      console.log("FETCHED");
-      this.quejas = quejas;
-    });
+    // this.quejasSub = this.quejasSerivice.getQuejaUpdateListener()
+    // .subscribe((quejas: Queja[]) => {
+    //   console.log("FETCHED");
+    //   this.quejas = quejas;
+    // });
   }
 
 }
