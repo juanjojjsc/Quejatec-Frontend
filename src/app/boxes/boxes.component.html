@@ -4,7 +4,7 @@
   <mat-select [formControl]="pokemonControl">
     <mat-optgroup *ngFor="let place of places" [label]="place.name"
                   [disabled]="place.disabled">
-      <mat-option *ngFor="let placeEvent of place.placeEvents" [value]="placeEvent.id">
+      <mat-option *ngFor="let placeEvent of place.placeEvents" [value]="placeEvent._id">
         {{placeEvent.name}}
       </mat-option>
     </mat-optgroup>

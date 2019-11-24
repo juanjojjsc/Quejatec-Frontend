@@ -72,7 +72,7 @@ export class BoxesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.pokemonControl.valueChanges.subscribe();
+    // this.pokemonControl.valueChanges.subscribe();
 
     this.placeService.getPlaces();
 
@@ -94,7 +94,7 @@ export class BoxesComponent implements OnInit {
     console.log("SCORE: ",score);
 
     let place = this.pokemonControl.value;
-    place = "5dd5cd9dfcb8f30b2f5c1d68";
+    //place = "5dd5cd9dfcb8f30b2f5c1d68";
     console.log("PLACE: ",place);
 
     this.quejasSerivice.postScore(null,score,place);
