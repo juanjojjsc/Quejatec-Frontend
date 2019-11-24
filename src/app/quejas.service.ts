@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Queja } from './queja.model';
 import { Router } from '@angular/router';
 import { Score } from './score.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({ providedIn: 'root' })
 export class QuejasService {

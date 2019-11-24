@@ -21,7 +21,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { UserinfoComponent } from './userinfo/userinfo.component';
@@ -67,8 +67,7 @@ import { AuthInterceptor } from './auth-interceptor';
     MatSelectModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    HttpClientModule,
-    MatSnackBar
+    HttpClientModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
