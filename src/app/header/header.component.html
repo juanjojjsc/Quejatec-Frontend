@@ -10,15 +10,15 @@
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </button>
-        <button mat-menu-item routerLink="/misquejas">
+        <button mat-menu-item routerLink="/misquejas" *ngIf="isAuth">
           <mat-icon>list</mat-icon>
           <span>Mis Quejas</span>
         </button>
-        <button mat-menu-item routerLink="/queja">
+        <button mat-menu-item routerLink="/queja" *ngIf="isAuth">
           <mat-icon>note_add</mat-icon>
           <span>Nueva Queja</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item *ngIf="isAuth">
           <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </button>

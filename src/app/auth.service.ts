@@ -30,6 +30,14 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  setAuthFlagTrue() {
+    this.isAuthenticated = true;
+  }
+
+  setAuthFlagFalse() {
+    this.isAuthenticated = false;
+  }
+
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }

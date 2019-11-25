@@ -30,6 +30,8 @@ export class BoxesComponent implements OnInit {
 
   private placesSub: Subscription;
 
+  isLoggedIn = false;
+
   places: any[] = [];
   pokemonControl = new FormControl();
 
@@ -97,6 +99,7 @@ export class BoxesComponent implements OnInit {
 
 
   }
+
 
 }
 
