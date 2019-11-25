@@ -32,10 +32,14 @@ export class AuthService {
 
   setAuthFlagTrue() {
     this.isAuthenticated = true;
+    //Update Subscription
+    this.authStatusListener.next(true);
   }
 
   setAuthFlagFalse() {
     this.isAuthenticated = false;
+    //Update Subscription
+    this.authStatusListener.next(true);
   }
 
   getAuthStatusListener() {
