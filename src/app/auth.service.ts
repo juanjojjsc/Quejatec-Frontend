@@ -86,6 +86,7 @@ export class AuthService {
           this.name = response.name;
           this.level = response.level;
           this.email = response.email;
+          //Update Subscription
           this.authStatusListener.next(true);
 
           //Save Data Locally
