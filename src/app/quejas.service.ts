@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Queja } from './queja.model';
 import { Router } from '@angular/router';
 import { Score } from './score.model';
+
+
 // import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({ providedIn: 'root' })
@@ -17,10 +19,10 @@ export class QuejasService {
 
   getQuejas() {
     //creatorId = '5dcc86e89f0d08180f413288';
-    console.log('http://10.0.1.70:3000/client/issue/');
+    console.log('http://34.69.131.58:8080/client/issue/');
     this.http
       .get<{ issues: any[]; }>(
-        'http://10.0.1.70:3000/client/issue/'
+        'http://34.69.131.58:8080/client/issue/'
       )
       .pipe(map((quejaData) => {
         console.log(quejaData);
@@ -53,10 +55,10 @@ export class QuejasService {
 
   getQueja(id: string) {
 
-    console.log('http://10.0.1.70:3000/client/issue/' + id);
+    console.log('http://34.69.131.58:8080/client/issue/' + id);
     this.http
       .get<any[]>(
-        'http://10.0.1.70:3000/client/issue/' + id
+        'http://34.69.131.58:8080/client/issue/' + id
       )
       .pipe(map((quejaData) => {
         console.log(quejaData);
@@ -97,7 +99,7 @@ export class QuejasService {
   postScore( _id:null, score: number, placeEvent: string) {
     const newScore: Score = { _id, score, placeEvent };
     this.http
-      .post<{ message: string, quejaId: string }>("http://10.0.1.70:3000/client/score", newScore)
+      .post<{ message: string, quejaId: string }>("http://34.69.131.58:8080/client/score", newScore)
       .subscribe(responseData => {
         // const id = responseData.taskId;
         // task.id = id;
@@ -110,7 +112,7 @@ export class QuejasService {
   postQueja( _id:null, description: string, placeEvent: string, status: null, userRate: null, registerDate: null) {
     const newQueja: Queja = { _id, description, placeEvent, status, userRate, registerDate };
     this.http
-      .post<{ message: string, quejaId: string }>("http://10.0.1.70:3000/client/issue", newQueja)
+      .post<{ message: string, quejaId: string }>("http://34.69.131.58:8080/client/issue", newQueja)
       .subscribe(responseData => {
         // const id = responseData.taskId;
         // task.id = id;
@@ -119,6 +121,8 @@ export class QuejasService {
         this.router.navigate(["/"]);
       });
   }
+
+
 
   // deleteTask(taskId: string) {
   //   this.http.delete("http://localhost:3000/api/tasks/" + taskId)

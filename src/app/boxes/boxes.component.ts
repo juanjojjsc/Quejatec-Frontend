@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { QuejasService } from '../quejas.service';
 import { Place } from '../place.model';
 import { PlaceService } from '../place.service';
+import { MatSnackBar } from '@angular/material';
 
 
 export interface Pokemon {
@@ -70,7 +71,7 @@ export class BoxesComponent implements OnInit {
     }
   ];
 
-  constructor(public quejasSerivice: QuejasService, public placeService: PlaceService) { }
+  constructor(public quejasSerivice: QuejasService, public placeService: PlaceService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -82,11 +83,18 @@ export class BoxesComponent implements OnInit {
       this.places = places;
       console.log("Frontend Places: ",this.places);
 
-    })
+    });
   }
 
+  openSnackBar() {
+    this.snackBar.open("Queja Enviada", "OK", {
+      duration: 4000,
+    });
+  }
 
   postScore() {
+
+    this.openSnackBar();
 
     let score = this.scoreControl.value;
     console.log("SCORE: ",score);

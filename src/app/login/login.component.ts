@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +10,24 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
 
-  isAuth:boolean;
+  isAuth: boolean;
+  private authListenerSub: Subscription;
+
+  private flagUpdated = new Subject<boolean>();
 
   constructor(private authService: AuthService) { }
 
 
 
   ngOnInit() {
+
+    this.isAuth = this.authService.getIsAuth();
+
+    this.authListenerSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.isAuth = isAuthenticated;
+      console.log("Got in login",this.isAuth);
+    });
 
 
 

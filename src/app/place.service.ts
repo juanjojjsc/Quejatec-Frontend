@@ -16,10 +16,10 @@ export class PlaceService {
 
   getPlaces() {
     //creatorId = '5dcc86e89f0d08180f413288';
-    console.log('http://10.0.1.70:3000/client/placeEvent/');
+    console.log('http://34.69.131.58:8080/client/placeEvent/');
     this.http
       .get<{ placeEventGroups: any[]; }>(
-        'http://10.0.1.70:3000/client/placeEvent/'
+        'http://34.69.131.58:8080/client/placeEvent/'
       )
       .pipe(map((placeData) => {
         console.log(placeData);
