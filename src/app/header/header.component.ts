@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Subject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   private flagUpdated = new Subject<boolean>();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
 
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit {
     console.log("Before logging out:",this.authService.getIsAuth());
     this.authService.setAuthFlagFalse();
     console.log("After logging out:",this.authService.getIsAuth());
-    //window.location.reload();
+    this.router.navigateByUrl("/");
   }
 
 }
