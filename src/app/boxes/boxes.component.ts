@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { QuejasService } from '../quejas.service';
 import { Place } from '../place.model';
@@ -71,9 +72,19 @@ export class BoxesComponent implements OnInit {
     }
   ];
 
-  constructor(public quejasSerivice: QuejasService, public placeService: PlaceService, private snackBar: MatSnackBar) { }
+  constructor(
+    public quejasSerivice: QuejasService, public placeService: PlaceService,
+    private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      const spaceId = paramMap.get('id');
+      if (spaceId) {
+        this.pokemonControl.disable();
+        this.pokemonControl.setValue(spaceId);
+      }
+    });
 
     this.placeService.getPlaces();
 
