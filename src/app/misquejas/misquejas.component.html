@@ -1,3 +1,7 @@
+<div class="new" *ngIf="!(quejas.length > 0)">
+  <p>No hay nuevas quejas.</p>
+<button mat-button color="primary" routerLink="/queja">Crear Queja</button>
+</div>
 <mat-accordion multi="true" *ngIf="quejas.length > 0">
     <mat-expansion-panel *ngFor="let queja of quejas">
       <mat-expansion-panel-header>
