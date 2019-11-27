@@ -34,4 +34,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
+
+  logout() {
+    this.authService.setAuthFlagFalse();
+  }
+
 }
