@@ -36,7 +36,10 @@ export class HeaderComponent implements OnInit {
 
 
   logout() {
+    console.log("Before logging out:",this.authService.getIsAuth());
     this.authService.setAuthFlagFalse();
+    console.log("After logging out:",this.authService.getIsAuth());
+    //window.location.reload();
   }
 
 }

@@ -5,6 +5,7 @@ import { Place } from '../place.model';
 import { PlaceService } from '../place.service';
 import { QuejasService } from '../quejas.service';
 import { MatSnackBar } from '@angular/material';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-queja',
@@ -17,11 +18,19 @@ export class QuejaComponent implements OnInit {
   descControl = new FormControl();
   description: string;
 
+  email: string;
+
   private placesSub: Subscription;
 
-  constructor(public placeService: PlaceService, public quejasService: QuejasService, private snackBar: MatSnackBar) { }
+  constructor(public placeService: PlaceService, public quejasService: QuejasService, private snackBar: MatSnackBar, private authService: AuthService) { }
 
   ngOnInit() {
+
+
+    const authData = this.authService.getLocalAuthData();
+    console.log("Got Local Data: ",authData.email);
+    this.email = authData.email;
+
     this.placeService.getPlaces();
 
 

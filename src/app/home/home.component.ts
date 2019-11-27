@@ -9,7 +9,11 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  //x = false;
+
   ngOnInit() {
+
+    //window.location.reload();
   }
 
 }

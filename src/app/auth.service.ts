@@ -65,70 +65,70 @@ export class AuthService {
     return this.email;
   }
 
-  createUser(email: string, password: string, name: string, level: string) {
-    const authData: AuthData = { email, password, name, level };
-    this.http.post(`${apiUrl}api/users/signup`, authData)
-      .subscribe(response => {
-        this.router.navigate(['/']);
-      });
-  }
+  // createUser(email: string, password: string, name: string, level: string) {
+  //   const authData: AuthData = { email, password, name, level };
+  //   this.http.post(`${apiUrl}api/users/signup`, authData)
+  //     .subscribe(response => {
+  //       this.router.navigate(['/']);
+  //     });
+  // }
 
 
-  loginUser(email: string, password: string) {
-    const authData: AuthData = { email, password, name: null, level: null };
-    this.http.post<{token: string, expiresIn: number, userId: string, name: string, level: string, email: string}>(`${apiUrl}api/users/login`, authData)
-      .subscribe(response => {
-        //Retrieve Token
-        const token = response.token;
-        this.token = token;
-        if (token) {
-          //Save Token Duration
-          const expiresInDuration = response.expiresIn;
-          //Start timer
-          this.setAuthTimer(expiresInDuration);
-          //Update authStatus
-          this.isAuthenticated = true;
-          //Save User Data to the frontend
-          this.userId = response.userId;
-          this.name = response.name;
-          this.level = response.level;
-          this.email = response.email;
-          //Update Subscription
-          this.authStatusListener.next(true);
+  // loginUser(email: string, password: string) {
+  //   const authData: AuthData = { email, password, name: null, level: null };
+  //   this.http.post<{token: string, expiresIn: number, userId: string, name: string, level: string, email: string}>(`${apiUrl}api/users/login`, authData)
+  //     .subscribe(response => {
+  //       //Retrieve Token
+  //       const token = response.token;
+  //       this.token = token;
+  //       if (token) {
+  //         //Save Token Duration
+  //         const expiresInDuration = response.expiresIn;
+  //         //Start timer
+  //         this.setAuthTimer(expiresInDuration);
+  //         //Update authStatus
+  //         this.isAuthenticated = true;
+  //         //Save User Data to the frontend
+  //         this.userId = response.userId;
+  //         this.name = response.name;
+  //         this.level = response.level;
+  //         this.email = response.email;
+  //         //Update Subscription
+  //         this.authStatusListener.next(true);
 
-          //Save Data Locally
-          const now = new Date();
-          const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate);
-          console.log("VAMOS A GUARDAR EMAIL:",this.email);
-          console.log("VAMOS A GUARDAR NOMBRE:",this.name);
-          this.saveAuthDataLocally(token, expirationDate, this.userId, this.name, this.level, this.email);
-          //Redirect User to Home
-          this.router.navigate(['/']);
-        }
-      });
-  }
+  //         //Save Data Locally
+  //         const now = new Date();
+  //         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+  //         console.log(expirationDate);
+  //         console.log("VAMOS A GUARDAR EMAIL:",this.email);
+  //         console.log("VAMOS A GUARDAR NOMBRE:",this.name);
+  //         this.saveAuthDataLocally(token, expirationDate, this.userId, this.name, this.level, this.email);
+  //         //Redirect User to Home
+  //         this.router.navigate(['/']);
+  //       }
+  //     });
+  // }
 
 
   // Try to auto login if the token is still valid
-  autoAuthUser() {
-    const authInformation = this.getLocalAuthData();
-    if (!authInformation) {
-      return;
-    }
-    const now = new Date();
-    const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
-    if (expiresIn > 0) {
-      this.token = authInformation.token;
-      this.isAuthenticated = true;
-      this.userId = authInformation.userId;
-      this.name = authInformation.name;
-      this.level = authInformation.level;
-      this.email = authInformation.email;
-      this.authStatusListener.next(true);
-      this.setAuthTimer(expiresIn / 1000);
-    }
-  }
+  // autoAuthUser() {
+  //   const authInformation = this.getLocalAuthData();
+  //   if (!authInformation) {
+  //     return;
+  //   }
+  //   const now = new Date();
+  //   const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+  //   if (expiresIn > 0) {
+  //     this.token = authInformation.token;
+  //     this.isAuthenticated = true;
+  //     this.userId = authInformation.userId;
+  //     this.name = authInformation.name;
+  //     this.level = authInformation.level;
+  //     this.email = authInformation.email;
+  //     this.authStatusListener.next(true);
+  //     this.setAuthTimer(expiresIn / 1000);
+  //   }
+  // }
 
 
 
@@ -158,12 +158,8 @@ export class AuthService {
     }, duration * 1000);
   }
 
-  private saveAuthDataLocally(token: string, expirationDate: Date, userId: string, name: string, level: string, email: string) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('name', name);
-    localStorage.setItem('level', level);
+  public saveAuthDataLocally(email: string, password: string) {
+    localStorage.setItem('password', password);
     localStorage.setItem('email', email);
   }
 
@@ -176,23 +172,13 @@ export class AuthService {
     localStorage.removeItem('email');
   }
 
-  private getLocalAuthData() {
-    const token = localStorage.getItem('token');
-    const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
-    const name = localStorage.getItem('name');
-    const level = localStorage.getItem('level');
+  public getLocalAuthData() {
     const email = localStorage.getItem('email');
-    if (!token || !expirationDate) {
-      return;
-    }
+    const password = localStorage.getItem('password');
+
     return {
-      token: token,
-      expirationDate: new Date(expirationDate),
-      userId: userId,
-      name: name,
-      level: level,
       email: email,
+      password: password
     }
   }
 
