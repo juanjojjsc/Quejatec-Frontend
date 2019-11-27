@@ -1,6 +1,6 @@
 export interface Queja {
   _id: string;
-  placeEvent: string;
+  placeEvent: any;
   description: string;
   status: string;
   userRate: number;
