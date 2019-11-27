@@ -86,6 +86,7 @@ export class BoxesComponent implements OnInit {
       }
     });
 
+
     this.placeService.getPlaces();
 
     this.placesSub = this.placeService.getPlaceUpdateListener()
@@ -115,6 +116,8 @@ export class BoxesComponent implements OnInit {
     console.log("PLACE: ",place);
 
     this.quejasSerivice.postScore(null,score,place);
+
+    window.location.reload();
 
 
   }

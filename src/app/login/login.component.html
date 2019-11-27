@@ -7,31 +7,35 @@
         <mat-form-field>
             <input
               matInput
+              [formControl]="emailControl"
+              id="email"
               type="email"
               name="email"
-              ngModel
+
               required email
               placeholder="Email"
-              #emailInput="ngModel">
-            <mat-error *ngIf="emailInput.invalid">Ingrese un correo valido</mat-error>
+              >
+            <mat-error *ngIf="emailControl.invalid">Ingrese un correo valido</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
+              [formControl]="passwordControl"
+              id="password"
               type="password"
               name="password"
-              ngModel
+
               required
               placeholder="Password"
-              #passwordInput="ngModel">
-              <mat-error *ngIf="passwordInput.invalid">Ingrese una contrasena valida</mat-error>
+              >
+              <mat-error *ngIf="passwordControl.invalid">Ingrese una contrasena valida</mat-error>
           </mat-form-field>
 
           <button
             mat-raised-button
             color = "primary"
 
-            type="submit" (click)="login()" routerLink="/queja">Login
+            type="submit" (click)="login()">Login
           </button>
 
     </form>
