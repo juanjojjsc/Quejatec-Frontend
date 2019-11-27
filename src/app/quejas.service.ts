@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Queja } from './queja.model';
 import { Router } from '@angular/router';
 import { Score } from './score.model';
+
+
 // import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppConfig } from './app.config';
@@ -122,6 +124,8 @@ export class QuejasService {
         this.router.navigate(["/"]);
       });
   }
+
+
 
   // deleteTask(taskId: string) {
   //   this.http.delete("http://localhost:3000/api/tasks/" + taskId)

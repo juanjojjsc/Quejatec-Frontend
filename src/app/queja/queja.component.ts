@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Place } from '../place.model';
 import { PlaceService } from '../place.service';
 import { QuejasService } from '../quejas.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-queja',
@@ -18,7 +19,7 @@ export class QuejaComponent implements OnInit {
 
   private placesSub: Subscription;
 
-  constructor(public placeService: PlaceService, public quejasService: QuejasService) { }
+  constructor(public placeService: PlaceService, public quejasService: QuejasService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.placeService.getPlaces();
@@ -33,7 +34,16 @@ export class QuejaComponent implements OnInit {
     })
   }
 
+  openSnackBar() {
+    this.snackBar.open("Queja Enviada", "OK", {
+      duration: 4000,
+    });
+  }
+
   postQueja() {
+
+
+    this.openSnackBar();
 
     console.log("Enviando Queja");
     this.description = this.descControl.value;
