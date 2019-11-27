@@ -5,6 +5,9 @@ import { AuthData } from './auth.model';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
+import { AppConfig } from './app.config';
+const apiUrl = AppConfig.apiURL;
+
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
@@ -64,7 +67,7 @@ export class AuthService {
 
   createUser(email: string, password: string, name: string, level: string) {
     const authData: AuthData = { email, password, name, level };
-    this.http.post("http://localhost:3000/api/users/signup", authData)
+    this.http.post(`${apiUrl}api/users/signup`, authData)
       .subscribe(response => {
         this.router.navigate(['/']);
       });
@@ -73,7 +76,7 @@ export class AuthService {
 
   loginUser(email: string, password: string) {
     const authData: AuthData = { email, password, name: null, level: null };
-    this.http.post<{token: string, expiresIn: number, userId: string, name: string, level: string, email: string}>("http://localhost:3000/api/users/login", authData)
+    this.http.post<{token: string, expiresIn: number, userId: string, name: string, level: string, email: string}>(`${apiUrl}api/users/login`, authData)
       .subscribe(response => {
         //Retrieve Token
         const token = response.token;

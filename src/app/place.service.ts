@@ -7,6 +7,9 @@ import { Queja } from './queja.model';
 import { Router } from '@angular/router';
 import { Place } from './place.model';
 
+import { AppConfig } from './app.config';
+const apiUrl = AppConfig.apiURL;
+
 @Injectable({ providedIn: 'root' })
 export class PlaceService {
   private places: Place[] = [];
@@ -16,10 +19,10 @@ export class PlaceService {
 
   getPlaces() {
     //creatorId = '5dcc86e89f0d08180f413288';
-    console.log('http://10.0.1.70:3000/client/placeEvent/');
+    console.log(`${apiUrl}client/placeEvent/`);
     this.http
       .get<{ placeEventGroups: any[]; }>(
-        'http://10.0.1.70:3000/client/placeEvent/'
+        `${apiUrl}client/placeEvent/`
       )
       .pipe(map((placeData) => {
         console.log(placeData);
@@ -58,7 +61,7 @@ export class PlaceService {
   //   const task: Task = { id: null, project: project, title: title, introduction: introduction,
   //     instructions: instructions, times: times, location: location, date: date };
   //   this.http
-  //     .post<{ message: string, taskId: string }>("http://localhost:3000/api/tasks", task)
+  //     .post<{ message: string, taskId: string }>(`${apiUrl}api/tasks"` task)
   //     .subscribe(responseData => {
   //       const id = responseData.taskId;
   //       task.id = id;
@@ -69,7 +72,7 @@ export class PlaceService {
   // }
 
   // deleteTask(taskId: string) {
-  //   this.http.delete("http://localhost:3000/api/tasks/" + taskId)
+  //   this.http.delete(`${apiUrl}api/tasks/` + taskId)
   //     .subscribe(() => {
   //         const updatedTasks = this.tasks.filter(task => task.id !== taskId);
   //         this.tasks = updatedTasks;
